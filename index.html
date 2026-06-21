@@ -5,27 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Tiny Errands</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  /* Dark / Veil */
-  --veil-dark: #364c2d;
+  /* palette */
+  --veil: #364c2d;
   --blood: #c1292c;
   --violet: #871856;
   --white: #ffffff;
-
-  /* Dusk blue accent */
   --dusk: #29c1c1;
 
-  /* Light scheme */
-  --light-red: #ff0000;
-  --green: #007f00;
   --sky: #bee3fb;
 
-  --bg: #0e140c;
-  --card: rgba(255,255,255,0.06);
+  --bg: #0b120b;
+  --muted: rgba(255,255,255,0.78);
+  --soft: rgba(255,255,255,0.12);
 }
 
 * {
@@ -34,120 +29,134 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: Inter, sans-serif;
   background: radial-gradient(circle at top, #1b2a17, var(--bg));
   color: var(--white);
-  line-height: 1.6;
-  scroll-behavior: smooth;
+  line-height: 1.65;
 }
 
-a { color: var(--dusk); text-decoration: none; }
-
+/* NAV */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(10,15,10,0.7);
-  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
-  gap: 25px;
-  padding: 15px;
-  z-index: 1000;
+  gap: 22px;
+  padding: 14px 10px;
+  background: linear-gradient(to bottom, rgba(10,15,10,0.75), transparent);
+  backdrop-filter: blur(6px);
+  z-index: 10;
 }
 
 nav a {
   color: var(--white);
-  font-weight: 500;
-  letter-spacing: 0.5px;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  opacity: 0.85;
 }
 
+nav a:hover {
+  opacity: 1;
+  color: var(--dusk);
+}
+
+/* GLOBAL LAYOUT */
 section {
-  padding: 100px 20px;
-  max-width: 1000px;
-  margin: auto;
+  padding: 120px 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* TYPOGRAPHY */
+h1, h2 {
+  font-family: "Playfair Display", serif;
+  letter-spacing: 0.3px;
+}
+
+h1 {
+  font-size: 4rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  opacity: 0.95;
+}
+
+p {
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* HERO */
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
+
   background:
-    linear-gradient(180deg, rgba(54,76,45,0.6), rgba(14,20,12,1)),
+    linear-gradient(180deg, rgba(54,76,45,0.55), rgba(11,18,11,1)),
     url('hero-placeholder.jpg') center/cover no-repeat;
 }
 
-.hero h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 4rem;
-  margin-bottom: 10px;
-}
-
 .hero p {
-  max-width: 600px;
-  opacity: 0.9;
+  max-width: 620px;
+  margin: 18px auto;
 }
 
-.btn {
+/* LINKS / BUTTONS */
+a.button {
   display: inline-block;
   margin-top: 20px;
-  padding: 12px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  background: var(--dusk);
-  color: #0b0f0a;
-  transition: 0.2s;
+  padding: 12px 18px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--white);
+  transition: 0.2s ease;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  background: #1aa3a3;
+a.button:hover {
+  border-color: var(--dusk);
+  color: var(--dusk);
 }
 
-.section-title {
-  font-family: "Playfair Display", serif;
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-}
-
-.card {
-  background: var(--card);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
+/* IMAGE STRIP */
 .screens {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin-top: 30px;
 }
 
 .screens img {
   width: 100%;
   border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.1);
+  opacity: 0.95;
 }
 
-.tag {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 4px 10px;
-  font-size: 12px;
-  border-radius: 999px;
-  background: rgba(41,193,193,0.2);
+/* subtle section breathing */
+section + section {
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* small accent text */
+.tagline {
   color: var(--dusk);
-}
-
-.footer-cta {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(180deg, transparent, rgba(54,76,45,0.3));
+  letter-spacing: 0.4px;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
 }
 </style>
 </head>
@@ -157,87 +166,87 @@ section {
 <nav>
   <a href="#about">About</a>
   <a href="#gameplay">Gameplay</a>
-  <a href="#screenshots">Screenshots</a>
+  <a href="#screenshots">Screens</a>
   <a href="#wishlist">Wishlist</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="top">
-  <h1>Tiny Errands</h1>
-  <p>A cozy narrative RPG about a small spirit, a forest full of strange requests, and the quiet chaos of trying to do one simple thing right.</p>
-  <a class="btn" href="#wishlist">Wishlist on Steam</a>
+  <div>
+    <h1>Tiny Errands</h1>
+    <p>
+      A cozy narrative RPG about a small forest spirit trying to complete simple tasks in a world that keeps quietly refusing to stay simple.
+    </p>
+    <a class="button" href="#wishlist">Wishlist on Steam</a>
+  </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <h2 class="section-title">About</h2>
-  <div class="card">
-    Tiny Errands is a short, cozy RPG where you play as Dusk, a small forest spirit trying to complete simple errands that never stay simple.
-    The world reacts to how you move through it—soft choices, strange encounters, and consequences that feel more emotional than mechanical.
-  </div>
+  <div class="tagline">about</div>
+  <h2>The forest remembers everything you do, even the small things.</h2>
 
-  <div class="card">
-    Built to feel like walking through a half-remembered dream: warm, eerie, and gently falling apart at the edges.
-    Expect cozy exploration, character-driven dialogue, and a world that shifts depending on your choices.
-  </div>
+  <p>
+    Tiny Errands follows Dusk, a small spirit moving through a living forest shaped by memory, emotion, and half-finished stories.
+  </p>
 
-  <a class="btn" href="#wishlist">Wishlist Tiny Errands</a>
+  <p>
+    It’s a short narrative RPG focused on atmosphere, dialogue, and gentle consequence. Nothing rushes you, but nothing stays still either.
+  </p>
+
+  <a class="button" href="#wishlist">Wishlist Tiny Errands</a>
 </section>
 
 <!-- GAMEPLAY -->
 <section id="gameplay">
-  <h2 class="section-title">Gameplay</h2>
+  <div class="tagline">gameplay</div>
+  <h2>Simple tasks. Strange outcomes.</h2>
 
-  <div class="card">
-    You explore a small forest map, meet strange inhabitants, and complete “errands” that rarely go as planned.
-    Choices are light mechanically but heavy emotionally—what you ignore matters as much as what you do.
-  </div>
+  <p>
+    You wander between small forest spaces, meet odd characters, and complete errands that tend to change shape halfway through.
+  </p>
 
-  <div class="card">
-    • Dialogue-driven exploration<br/>
-    • Light puzzle-like errands<br/>
-    • Branching character outcomes<br/>
-    • Short playtime, replayable paths
-  </div>
+  <p>
+    The mechanics stay light. The tone does not. Choices are subtle but persistent.
+  </p>
 
-  <a class="btn" href="#wishlist">Support on Steam Wishlist</a>
+  <p>
+    exploration · dialogue · branching outcomes · cozy surrealism
+  </p>
+
+  <a class="button" href="#screenshots">See the world</a>
 </section>
 
 <!-- SCREENSHOTS -->
 <section id="screenshots">
-  <h2 class="section-title">Screenshots</h2>
+  <div class="tagline">visuals</div>
+  <h2>Fragments of the forest</h2>
 
   <div class="screens">
-    <img src="screen1.jpg" alt="Screenshot 1"/>
-    <img src="screen2.jpg" alt="Screenshot 2"/>
-    <img src="screen3.jpg" alt="Screenshot 3"/>
+    <img src="screen1.jpg" alt="Screenshot 1">
+    <img src="screen2.jpg" alt="Screenshot 2">
+    <img src="screen3.jpg" alt="Screenshot 3">
   </div>
 
-  <p style="margin-top:15px; opacity:0.8;">
-    (Replace these with actual exported Steam capsule / in-game shots.)
+  <p style="margin-top: 25px;">
+    Replace these with in-game captures or mockups. This section works best when the images feel slightly imperfect and atmospheric.
   </p>
+
+  <a class="button" href="#wishlist">Wishlist on Steam</a>
 </section>
 
 <!-- WISHLIST -->
 <section id="wishlist">
-  <h2 class="section-title">Wishlist</h2>
+  <div class="tagline">support</div>
+  <h2>Wishlist helps the forest grow.</h2>
 
-  <div class="card">
-    If you’re interested in Tiny Errands, the single most helpful thing right now is wishlisting it on Steam. It genuinely affects visibility.
-  </div>
+  <p>
+    If Tiny Errands interests you, wishlisting is the most useful signal right now. It directly affects visibility on Steam.
+  </p>
 
-  <a class="btn" href="https://store.steampowered.com/" target="_blank">
-    Wishlist on Steam
+  <a class="button" href="https://store.steampowered.com/" target="_blank">
+    Open Steam Wishlist Page
   </a>
-
-  <span class="tag">cozy forest RPG • narrative • indie</span>
-</section>
-
-<!-- FOOTER CTA -->
-<section class="footer-cta">
-  <h2 class="section-title">One small errand at a time.</h2>
-  <p>Follow development updates and help Tiny Errands reach its launch.</p>
-  <a class="btn" href="#top">Back to top</a>
 </section>
 
 </body>
