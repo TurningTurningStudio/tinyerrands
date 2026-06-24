@@ -1,257 +1,401 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Tiny Errands</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  /* palette */
-  --veil: #364c2d;
-  --blood: #c1292c;
-  --violet: #871856;
-  --white: #f4f0c3;
-  --dusk: #29c1c1;
 
-  --sky: #bee3fb;
+:root{
+    --forest:#364c2d;
+    --veil:#871856;
+    --berry:#c1292c;
+    --cream:#f4f0c3;
+    --dusk:#29c1c1;
+    --sky:#bee3fb;
 
-  --bg: #0b120b;
-  --muted: rgba(255,255,255,0.78);
-  --soft: rgba(255,255,255,0.12);
+    --bg:#091008;
+    --text:#f4f0c3;
+    --muted:rgba(244,240,195,.78);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-  font-family: Inter, sans-serif;
-  background: radial-gradient(circle at top, #1b2a17, var(--bg));
-  color: var(--white);
-  line-height: 1.65;
+body{
+    font-family:Inter,sans-serif;
+    background:
+        radial-gradient(circle at top,
+        rgba(54,76,45,.65),
+        #091008 60%);
+    color:var(--text);
+    line-height:1.8;
 }
 
-/* NAV */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-  padding: 14px 10px;
-  background: linear-gradient(to bottom, rgba(10,15,10,0.75), transparent);
-  backdrop-filter: blur(6px);
-  z-index: 10;
+img{
+    display:block;
+    max-width:100%;
 }
 
-nav a {
-  color: var(--white);
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 0.6px;
-  opacity: 0.85;
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    display:flex;
+    justify-content:center;
+    gap:2rem;
+
+    padding:1rem;
+
+    z-index:100;
+
+    background:
+        linear-gradient(
+        to bottom,
+        rgba(9,16,8,.85),
+        rgba(9,16,8,0)
+        );
 }
 
-nav a:hover {
-  opacity: 1;
-  color: var(--dusk);
+nav a{
+    color:var(--cream);
+    text-decoration:none;
+    font-size:.9rem;
+    opacity:.8;
 }
 
-/* GLOBAL LAYOUT */
-section {
-  padding: 120px 20px;
-  max-width: 900px;
-  margin: 0 auto;
+nav a:hover{
+    color:var(--dusk);
 }
 
-/* TYPOGRAPHY */
-h1, h2 {
-  font-family: "Playfair Display", serif;
-  letter-spacing: 0.3px;
+/* ---------------- HERO ---------------- */
+
+.hero{
+    min-height:100vh;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(9,16,8,.15),
+            rgba(9,16,8,.75)
+        ),
+        url("YOUR-HERO-IMAGE-HERE")
+        center center / cover no-repeat;
 }
 
-h1 {
-  font-size: 4rem;
-  line-height: 1.1;
+.hero-inner{
+    width:min(1000px,90vw);
 }
 
-h2 {
-  font-size: 2.2rem;
-  margin-bottom: 20px;
-  opacity: 0.95;
+.hero-logo{
+    width:min(850px,90vw);
+    margin:0 auto 2rem;
 }
 
-p {
-  color: var(--muted);
-  margin-bottom: 18px;
+.hero-tagline{
+    max-width:700px;
+    margin:0 auto;
+
+    font-size:1.15rem;
+    color:var(--cream);
 }
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+.hero-button{
+    display:inline-block;
 
-  background:
-    linear-gradient(180deg, rgba(54,76,45,0.55), rgba(11,18,11,1)),
-    url('https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screenlibraryhero2.png') center/cover no-repeat;
+    margin-top:2rem;
+
+    padding:.9rem 1.5rem;
+
+    border:1px solid rgba(244,240,195,.3);
+
+    border-radius:999px;
+
+    color:var(--cream);
+    text-decoration:none;
+
+    transition:.2s;
 }
 
-.hero p {
-  max-width: 620px;
-  margin: 18px auto;
+.hero-button:hover{
+    border-color:var(--dusk);
+    color:var(--dusk);
 }
 
-/* LINKS / BUTTONS */
-a.button {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 18px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--white);
-  transition: 0.2s ease;
+.scroll-down{
+    position:absolute;
+
+    bottom:2rem;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    opacity:.65;
+
+    font-size:.85rem;
+    letter-spacing:.08em;
 }
 
-a.button:hover {
-  border-color: var(--dusk);
-  color: var(--dusk);
+/* ---------------- CONTENT ---------------- */
+
+.content{
+    width:min(900px,90vw);
+    margin:auto;
 }
 
-/* IMAGE STRIP */
-.screens {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-  margin-top: 30px;
+section{
+    padding:8rem 0;
 }
 
-.screens img {
-  width: 100%;
-  border-radius: 10px;
-  opacity: 0.95;
+.section-label{
+    color:var(--dusk);
+
+    text-transform:uppercase;
+    letter-spacing:.18em;
+
+    font-size:.75rem;
+
+    margin-bottom:1rem;
 }
 
-/* subtle section breathing */
-section + section {
-  border-top: 1px solid rgba(255,255,255,0.06);
+h2{
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(2rem,5vw,3.5rem);
+
+    margin-bottom:2rem;
+
+    line-height:1.15;
 }
 
-/* small accent text */
-.tagline {
-  color: var(--dusk);
-  letter-spacing: 0.4px;
-  font-size: 13px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
+p{
+    color:var(--muted);
+    margin-bottom:1.5rem;
 }
+
+/* ---------------- FEATURE IMAGE ---------------- */
+
+.feature-image{
+    margin:4rem 0;
+}
+
+.feature-image img{
+    border-radius:12px;
+}
+
+/* ---------------- SCREENSHOTS ---------------- */
+
+.screenshot-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1.25rem;
+
+    margin-top:3rem;
+}
+
+.screenshot-grid img{
+    border-radius:10px;
+}
+
+@media(max-width:700px){
+
+    .screenshot-grid{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        gap:1rem;
+        font-size:.8rem;
+    }
+}
+
+/* ---------------- CTA ---------------- */
+
+.cta{
+    text-align:center;
+    padding-bottom:10rem;
+}
+
+.cta h2{
+    margin-bottom:1rem;
+}
+
+.cta-button{
+    display:inline-block;
+
+    margin-top:2rem;
+
+    padding:1rem 2rem;
+
+    border-radius:999px;
+
+    background:var(--dusk);
+
+    color:#091008;
+
+    text-decoration:none;
+    font-weight:600;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#gameplay">Gameplay</a>
-  <a href="#screenshots">Screens</a>
-  <a href="#wishlist">Wishlist</a>
+    <a href="#about">About</a>
+    <a href="#gameplay">Gameplay</a>
+    <a href="#screenshots">Screenshots</a>
+    <a href="#wishlist">Wishlist</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="top">
-  <div>
-    <h1>Tiny Errands</h1>
-    <p>
-      A cozy narrative game about a small night pixie trying to find the best birthday present for his human.
+<section class="hero">
+
+```
+<div class="hero-inner">
+
+    <img
+        class="hero-logo"
+        src="YOUR-LOGO-PNG"
+        alt="Tiny Errands">
+
+    <p class="hero-tagline">
+        A cozy narrative game about a small night pixie searching for the perfect birthday present for his human.
     </p>
-    <a class="button" href="#wishlist">Wishlist on Steam</a>
-  </div>
+
+    <a class="hero-button" href="#wishlist">
+        Wishlist on Steam
+    </a>
+
+</div>
+
+<div class="scroll-down">
+    Scroll to enter the forest ↓
+</div>
+```
+
 </section>
 
-<!-- ABOUT -->
+<div class="content">
+
 <section id="about">
-  <div class="tagline">about</div>
-  <h2>Errands to cross off, and people to meet.</h2>
 
-  <p>
-    Tiny Errands follows Dusk, a small pixie moving through a living forest filled with supernatural inhabitants, old friends, and shy forest spirits.
-  </p>
+```
+<div class="section-label">About</div>
 
-  <p>
-    It’s a short narrative game focused on atmosphere, characters, and dialogue. Nothing rushes you. The forest is happy to move at your pace. All you need to do is help Dusk find the perfect birthday gift for his human.
-  </p>
-  <p><img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/webpage.png"/></p>
+<h2>
+    You have a list of things to do.
+    The forest has other plans.
+</h2>
 
-  <a class="button" href="#wishlist">Wishlist Tiny Errands</a>
+<p>
+    Tiny Errands follows Dusk, a night pixie navigating a vibrant woodland filled with supernatural residents, playful spirits, old friends, and hidden mysteries.
+</p>
+
+<p>
+    What begins as a simple search for the perfect birthday gift slowly unfolds into a journey through the lives of the forest's inhabitants.
+</p>
+
+<div class="feature-image">
+    <img src="YOUR-WEBPAGE-IMAGE">
+</div>
+```
+
 </section>
 
-<!-- GAMEPLAY -->
 <section id="gameplay">
-  <div class="tagline">gameplay</div>
-  <h2>Simple errands. A small curse.</h2>
 
-  <p>
-    Dusk needs help with a present, but his friends need help with a curse. You wander between small forest spaces, meet odd characters, and complete errands for your friends.
-  </p>
+```
+<div class="section-label">Gameplay</div>
 
-  <p>
-    The mechanics are light. The game is peaceful. There are secrets to discover. 
-  </p>
+<h2>
+    Wander. Explore. Help your friends.
+</h2>
 
-  <p>
-      <div class="tagline">exploration · dialogue · rich setting  · cozy  · queer</div>
-  </p>
+<p>
+    Travel between handcrafted locations, meet memorable characters, uncover secrets, and complete small tasks that reveal a much larger world.
+</p>
 
-  <a class="button" href="#screenshots">See the world</a>
+<p>
+    Tiny Errands focuses on dialogue, atmosphere, exploration, and character-driven storytelling.
+</p>
+```
+
 </section>
 
-<!-- SCREENSHOTS -->
 <section id="screenshots">
-  <div class="tagline">visuals</div>
-  <h2>In the forest.</h2>
 
-  <div class="screens">
-    <img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screeneurus.png" alt="Eurus's house">
-    <img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screenkeme.png" alt="Dusk has his own personality">
-    <img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screenmotherredwood.png" alt="Discover forest secrets">
-        <img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screentwiddlepetal.png" alt="Meet forest characters">
-        <img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screenveil.png" alt="See what's beyond the forest Veil">
-        <img src="https://raw.githubusercontent.com/TurningTurningStudio/tinyerrands/refs/heads/main/images/screenzir.png" alt="Dozens of locations">
-  </div>
+```
+<div class="section-label">Screenshots</div>
 
-  <p style="margin-top: 25px;">
-    Discover forest secrets, explore Dusk's personality, and enjoy a diverse cast of queer characters across several locations.
-  </p>
+<h2>
+    Fragments of the forest.
+</h2>
 
-  <a class="button" href="#wishlist">Wishlist on Steam</a>
+<div class="screenshot-grid">
+
+    <img src="SCREENSHOT1">
+    <img src="SCREENSHOT2">
+    <img src="SCREENSHOT3">
+    <img src="SCREENSHOT4">
+    <img src="SCREENSHOT5">
+    <img src="SCREENSHOT6">
+
+</div>
+```
+
 </section>
 
-<!-- WISHLIST -->
-<section id="wishlist">
-  <div class="tagline">support</div>
-  <h2>Wishlist helps the forest grow.</h2>
+<section id="wishlist" class="cta">
 
-  <p>
-    If Tiny Errands interests you, wishlisting is the most useful way to help right now. It directly affects visibility on Steam.
-  </p>
+```
+<div class="section-label">Wishlist</div>
 
-  <a class="button" href="https://store.steampowered.com/" target="_blank">
-    Open Steam Wishlist Page
-  </a>
+<h2>
+    Wishlist helps Tiny Errands grow.
+</h2>
+
+<p>
+    If the game looks like your kind of adventure, wishlisting on Steam is the best way to support development and stay informed about release updates.
+</p>
+
+<a
+    class="cta-button"
+    href="YOUR-STEAM-PAGE"
+    target="_blank">
+
+    Wishlist on Steam
+
+</a>
+```
+
 </section>
+
+</div>
 
 </body>
 </html>
